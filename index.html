@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORMA — Studio de Coiffure Montréal</title>
+  <meta name="description" content="FORMA Studio - Coiffure d'exception à Montréal. Coupes sur mesure, colorations, soins capillaires et coiffures de cérémonie. Prenez rendez-vous en ligne.">
+  <meta name="keywords" content="coiffeur montreal, salon de coiffure montreal, coloration, balayage, coupe femme, coupe homme, coiffure mariée">
+  <meta property="og:title" content="FORMA — Studio de Coiffure Montréal">
+  <meta property="og:description" content="L'art de votre style. Coiffure d'exception à Montréal depuis 2015.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===================================
+       RESET & VARIABLES
+    =================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:          #0C0C0C;
+      --bg-2:        #141414;
+      --bg-3:        #1C1C1C;
+      --bg-4:        #222222;
+      --gold:        #E8C547;
+      --gold-dim:    rgba(232,197,71,0.15);
+      --gold-line:   rgba(232,197,71,0.2);
+      --white:       #F8F8F8;
+      --gray-light:  #BBBBBB;
+      --gray:        #777777;
+      --gray-dark:   #444444;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ===================================
+       NAVIGATION
+    =================================== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 2rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: padding 0.4s ease, background 0.4s ease, border 0.4s ease;
+    }
+
+    #navbar.scrolled {
+      background: rgba(12,12,12,0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      padding: 1.1rem 5rem;
+      border-bottom: 1px solid var(--gold-line);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      color: var(--gold);
+      letter-spacing: 5px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray-light);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--bg) !important;
+      padding: 0.55rem 1.4rem;
+      font-weight: 700 !important;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+
+    .nav-cta::after { display: none !important; }
+
+    .nav-cta:hover {
+      background: var(--white) !important;
+      color: var(--bg) !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(12,12,12,0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 3.5rem);
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 4px;
+      transition: color 0.3s;
+    }
+
+    .mobile-menu a:hover { color: var(--gold); }
+
+    .mobile-close {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      background: none; border: none;
+      color: var(--white);
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ===================================
+       HERO
+    =================================== */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      filter: brightness(0.22) saturate(0.8);
+    }
+
+    /* Geometric overlays */
+    .hero-geo {
+      position: absolute; inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .geo-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--gold-line);
+    }
+
+    .geo-ring-1 {
+      width: 700px; height: 700px;
+      right: -200px; top: -200px;
+      animation: spin 40s linear infinite;
+    }
+
+    .geo-ring-2 {
+      width: 460px; height: 460px;
+      right: 50px; top: 30px;
+      border-color: rgba(232,197,71,0.06);
+      animation: spin 25s linear infinite reverse;
+    }
+
+    .geo-ring-3 {
+      width: 200px; height: 200px;
+      right: 200px; top: 200px;
+      border-color: rgba(232,197,71,0.1);
+      animation: spin 15s linear infinite;
+    }
+
+    .geo-vline {
+      position: absolute;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold-line), transparent);
+    }
+
+    .geo-vline-1 { height: 100vh; right: 280px; top: 0; }
+    .geo-vline-2 { height: 60vh; right: 120px; top: 20vh; opacity: 0.5; }
+
+    .geo-hline {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-line), transparent);
+    }
+
+    .geo-hline-1 { width: 40vw; right: 0; top: 30vh; }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 5rem;
+      max-width: 960px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.2s forwards;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 44px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 13vw, 11rem);
+      line-height: 0.92;
+      letter-spacing: 3px;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.4s forwards;
+    }
+
+    .hero-title .gold { color: var(--gold); }
+
+    .hero-title .outline {
+      -webkit-text-stroke: 2px var(--white);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: var(--gray-light);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.6s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.8s forwards;
+    }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 1.4s forwards;
+    }
+
+    .scroll-label {
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .scroll-bar {
+      width: 1px; height: 55px;
+      background: var(--bg-3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-bar::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--gold);
+      animation: scrollDrop 2s ease infinite;
+    }
+
+    @keyframes scrollDrop {
+      0%   { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===================================
+       BUTTONS
+    =================================== */
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--bg);
+      padding: 1rem 2.8rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      transition: background 0.3s, transform 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary:hover {
+      background: var(--white);
+      transform: translateY(-3px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .btn-ghost .arrow {
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    .btn-ghost:hover { color: var(--gold); }
+    .btn-ghost:hover .arrow { transform: translateX(5px); }
+
+    /* ===================================
+       MARQUEE BAND
+    =================================== */
+    .marquee-band {
+      background: var(--gold);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marqueeRun 28s linear infinite;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.8rem;
+      padding: 0 2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      color: var(--bg);
+    }
+
+    .marquee-sep {
+      width: 5px; height: 5px;
+      background: rgba(12,12,12,0.35);
+      border-radius: 50%;
+    }
+
+    @keyframes marqueeRun {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ===================================
+       SECTION BASE
+    =================================== */
+    .section { padding: 9rem 5rem; }
+
+    .sec-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .sec-label::before {
+      content: '';
+      width: 30px; height: 1px;
+      background: var(--gold);
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: 2px;
+    }
+
+    /* ===================================
+       REVEAL ANIMATIONS
+    =================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(44px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+    .d5 { transition-delay: 0.5s; }
+
+    /* ===================================
+       SERVICES
+    =================================== */
+    #services { background: var(--bg-2); padding: 9rem 5rem; }
+
+    .services-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+
+    .services-intro {
+      color: var(--gray-light);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .svc-card {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+
+    .svc-card:hover { background: var(--bg-3); }
+
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.4s ease;
+    }
+
+    .svc-card:hover::after { width: 100%; }
+
+    .svc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 2rem;
+    }
+
+    .svc-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .svc-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .svc-desc {
+      color: var(--gray);
+      font-size: 0.88rem;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .svc-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+    }
+
+    .price-from {
+      font-size: 0.7rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .price-big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .price-unit { font-size: 1rem; color: var(--gold); }
+
+    /* ===================================
+       ABOUT
+    =================================== */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7rem;
+      align-items: center;
+      padding: 9rem 5rem;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-frame {
+      position: absolute;
+      bottom: -28px;
+      right: -28px;
+      width: 220px; height: 220px;
+      border: 2px solid var(--gold);
+      z-index: 0;
+    }
+
+    .about-badge {
+      position: absolute;
+      top: 2rem; left: -2rem;
+      z-index: 2;
+      background: var(--gold);
+      color: var(--bg);
+      width: 90px; height: 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+
+    .badge-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .badge-txt {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .about-text {
+      color: var(--gray-light);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .stat-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: 2px;
+    }
+
+    .stat-lbl {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--gray);
+      margin-top: 0.4rem;
+    }
+
+    /* ===================================
+       GALLERY
+    =================================== */
+    #gallery {
+      background: var(--bg-2);
+      padding: 9rem 5rem 0;
+    }
+
+    .gallery-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 320px);
+      gap: 4px;
+    }
+
+    .gal-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gal-item:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gal-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .gal-item:hover img { transform: scale(1.06); }
+
+    .gal-overlay {
+      position: absolute; inset: 0;
+      background: rgba(232,197,71,0);
+      transition: background 0.4s;
+    }
+
+    .gal-item:hover .gal-overlay { background: rgba(232,197,71,0.08); }
+
+    /* ===================================
+       TEAM
+    =================================== */
+    #team { padding: 9rem 5rem; }
+
+    .team-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: end;
+      margin-bottom: 4.5rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .team-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      filter: grayscale(20%);
+      transition: filter 0.5s, transform 0.5s;
+    }
+
+    .team-card:hover .team-img {
+      filter: grayscale(0%);
+      transform: scale(1.04);
+    }
+
+    .team-id {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    .team-info { padding: 1.5rem 0 0; }
+
+    .team-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .team-role {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--gold);
+    }
+
+    /* ===================================
+       TESTIMONIALS
+    =================================== */
+    #testimonials {
+      background: var(--bg-2);
+      padding: 9rem 5rem;
+    }
+
+    .testi-header { margin-bottom: 4rem; }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .testi-card {
+      background: var(--bg-3);
+      padding: 3rem 2.5rem;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .testi-card:hover {
+      border-top-color: var(--gold);
+      background: var(--bg-4);
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      margin-bottom: 1.8rem;
+    }
+
+    .testi-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--gray-light);
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testi-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .author-since {
+      font-size: 0.72rem;
+      color: var(--gray);
+      margin-top: 0.2rem;
+    }
+
+    /* ===================================
+       BOOKING
+    =================================== */
+    #booking {
+      padding: 9rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .booking-watermark {
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22vw;
+      color: rgba(255,255,255,0.018);
+      letter-spacing: 8px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .booking-wrap {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7rem;
+      align-items: center;
+    }
+
+    .booking-info-text {
+      color: var(--gray-light);
+      line-height: 1.85;
+      margin-bottom: 3.5rem;
+    }
+
+    .booking-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .detail-icon {
+      flex-shrink: 0;
+      width: 52px; height: 52px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .detail-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--gray);
+      margin-bottom: 0.25rem;
+    }
+
+    .detail-val {
+      font-size: 0.95rem;
+    }
+
+    /* Form */
+    .booking-form-box {
+      background: var(--bg-2);
+      padding: 3.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .form-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 3px;
+      margin-bottom: 2.5rem;
+    }
+
+    .form-grp { margin-bottom: 1.6rem; }
+
+    .form-lbl {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--gray);
+      margin-bottom: 0.7rem;
+    }
+
+    .form-ctrl {
+      width: 100%;
+      background: var(--bg-3);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 0.95rem 1.2rem;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.93rem;
+      border-radius: 0;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-ctrl:focus { border-color: var(--gold); }
+
+    .form-ctrl::placeholder { color: var(--gray-dark); }
+
+    .form-ctrl option { background: var(--bg-3); }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      padding: 1.15rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      margin-top: 0.5rem;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+
+    .form-submit:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .form-success.show { display: block; }
+
+    .success-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .success-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+    }
+
+    .success-msg {
+      color: var(--gray-light);
+      line-height: 1.7;
+    }
+
+    /* ===================================
+       FOOTER
+    =================================== */
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 5rem 5rem 2.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      letter-spacing: 6px;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      color: var(--gray);
+      font-size: 0.88rem;
+      line-height: 1.75;
+      max-width: 280px;
+    }
+
+    .footer-col h5 {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3.5px;
+      color: var(--gray-light);
+      margin-bottom: 1.8rem;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li { margin-bottom: 0.9rem; }
+
+    .footer-col ul li a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+    }
+
+    .footer-col ul li a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      color: var(--gray);
+      font-size: 0.78rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .soc-link {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .soc-link:hover { color: var(--gold); }
+
+    /* ===================================
+       RESPONSIVE
+    =================================== */
+    @media (max-width: 1100px) {
+      #navbar,
+      #navbar.scrolled { padding-left: 2.5rem; padding-right: 2.5rem; }
+
+      .section,
+      #services,
+      #about,
+      #gallery,
+      #team,
+      #testimonials,
+      #booking { padding-left: 2.5rem; padding-right: 2.5rem; }
+
+      footer { padding-left: 2.5rem; padding-right: 2.5rem; }
+
+      .hero-content { padding: 0 2.5rem; }
+
+      .services-top { grid-template-columns: 1fr; gap: 2rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+
+      #about { grid-template-columns: 1fr; gap: 4rem; }
+      .about-image-wrap { max-width: 480px; }
+      .about-stats { grid-template-columns: repeat(2, 1fr); }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 260px);
+      }
+      .gal-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+
+      .team-top { grid-template-columns: 1fr; gap: 2rem; }
+
+      .testi-grid { grid-template-columns: 1fr 1fr; }
+
+      .booking-wrap { grid-template-columns: 1fr; gap: 4rem; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      #navbar,
+      #navbar.scrolled { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+      .section,
+      #services,
+      #about,
+      #gallery,
+      #team,
+      #testimonials,
+      #booking { padding: 6rem 1.5rem; }
+
+      footer { padding: 4rem 1.5rem 2rem; }
+
+      .hero-content { padding: 0 1.5rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 200px);
+      }
+
+      .team-grid { grid-template-columns: 1fr; max-width: 320px; }
+
+      .testi-grid { grid-template-columns: 1fr; }
+
+      .form-row-2 { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1.2rem; text-align: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ========================
+     NAVIGATION
+======================== -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">FORMA</a>
+
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">À Propos</a></li>
+    <li><a href="#gallery">Galerie</a></li>
+    <li><a href="#team">Équipe</a></li>
+    <li><a href="#booking" class="nav-cta">Prendre RDV</a></li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Fermer">✕</button>
+  <a href="#services" class="mob-link">Services</a>
+  <a href="#about" class="mob-link">À Propos</a>
+  <a href="#gallery" class="mob-link">Galerie</a>
+  <a href="#team" class="mob-link">Équipe</a>
+  <a href="#booking" class="mob-link" style="color:var(--gold)">Prendre RDV</a>
+</div>
+
+
+<!-- ========================
+     HERO
+======================== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-geo">
+    <div class="geo-ring geo-ring-1"></div>
+    <div class="geo-ring geo-ring-2"></div>
+    <div class="geo-ring geo-ring-3"></div>
+    <div class="geo-vline geo-vline-1"></div>
+    <div class="geo-vline geo-vline-2"></div>
+    <div class="geo-hline geo-hline-1"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-tag">Studio de Coiffure · Montréal, QC</p>
+    <h1 class="hero-title">
+      L'ART DE<br>
+      VOTRE <span class="gold">STYLE</span><br>
+      <span class="outline">UNIQUE</span>
+    </h1>
+    <p class="hero-sub">
+      Chez FORMA, chaque coupe est une signature. Nous sculptons votre image avec précision, passion et savoir-faire.
+    </p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-primary">Réserver ma séance</a>
+      <a href="#services" class="btn-ghost">Nos services <span class="arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="scroll-label">Scroll</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+
+<!-- ========================
+     MARQUEE
+======================== -->
+<div class="marquee-band">
+  <div class="marquee-track">
+    <span class="marquee-item">Coupe Femme <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Coupe Homme <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Coloration <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Balayage <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Lissage Brésilien <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Soins Capillaires <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Coiffure Mariée <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Brushing <span class="marquee-sep"></span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Coupe Femme <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Coupe Homme <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Coloration <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Balayage <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Lissage Brésilien <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Soins Capillaires <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Coiffure Mariée <span class="marquee-sep"></span></span>
+    <span class="marquee-item">Brushing <span class="marquee-sep"></span></span>
+  </div>
+</div>
+
+
+<!-- ========================
+     SERVICES
+======================== -->
+<section id="services">
+  <div class="services-top">
+    <div class="reveal">
+      <p class="sec-label">Nos Services</p>
+      <h2 class="sec-title">CE QUE<br>NOUS<br>FAISONS</h2>
+    </div>
+    <p class="services-intro reveal d2">
+      Du brushing quotidien à la transformation complète, notre équipe maîtrise l'ensemble des techniques modernes pour révéler votre beauté naturelle — avec l'exigence d'un vrai studio artistique.
+    </p>
+  </div>
+
+  <div class="services-grid">
+    <div class="svc-card reveal">
+      <p class="svc-num">01</p>
+      <div class="svc-icon">✂️</div>
+      <h3 class="svc-name">Coupe Femme</h3>
+      <p class="svc-desc">Coupe personnalisée selon votre morphologie, vos envies et la texture de votre cheveu. Brushing professionnel inclus.</p>
+      <div class="svc-price">
+        <span class="price-from">À partir de</span>
+        <span class="price-big">45</span>
+        <span class="price-unit">$</span>
+      </div>
+    </div>
+
+    <div class="svc-card reveal d1">
+      <p class="svc-num">02</p>
+      <div class="svc-icon">🪒</div>
+      <h3 class="svc-name">Coupe Homme</h3>
+      <p class="svc-desc">Coupe classique ou contemporaine avec finitions rasoir, soins du cuir chevelu et stylisation.</p>
+      <div class="svc-price">
+        <span class="price-from">À partir de</span>
+        <span class="price-big">30</span>
+        <span class="price-unit">$</span>
+      </div>
+    </div>
+
+    <div class="svc-card reveal d2">
+      <p class="svc-num">03</p>
+      <div class="svc-icon">🎨</div>
+      <h3 class="svc-name">Coloration</h3>
+      <p class="svc-desc">Couleurs tendance ou naturelles réalisées avec des produits respectueux. Résultat intense et durable.</p>
+      <div class="svc-price">
+        <span class="price-from">À partir de</span>
+        <span class="price-big">65</span>
+        <span class="price-unit">$</span>
+      </div>
+    </div>
+
+    <div class="svc-card reveal d1">
+      <p class="svc-num">04</p>
+      <div class="svc-icon">✨</div>
+      <h3 class="svc-name">Balayage</h3>
+      <p class="svc-desc">Technique de dépigmentation douce pour un effet soleil naturel et ultra lumineux sur tous types de cheveux.</p>
+      <div class="svc-price">
+        <span class="price-from">À partir de</span>
+        <span class="price-big">90</span>
+        <span class="price-unit">$</span>
+      </div>
+    </div>
+
+    <div class="svc-card reveal d2">
+      <p class="svc-num">05</p>
+      <div class="svc-icon">💆</div>
+      <h3 class="svc-name">Soin Capillaire</h3>
+      <p class="svc-desc">Masques nourrissants, kératine et soins reconstructeurs pour redonner force et brillance aux cheveux fragilisés.</p>
+      <div class="svc-price">
+        <span class="price-from">À partir de</span>
+        <span class="price-big">35</span>
+        <span class="price-unit">$</span>
+      </div>
+    </div>
+
+    <div class="svc-card reveal d3">
+      <p class="svc-num">06</p>
+      <div class="svc-icon">💍</div>
+      <h3 class="svc-name">Coiffure Mariée</h3>
+      <p class="svc-desc">Chignon, tresse, couronne florale — coiffure de cérémonie sur mesure pour le plus beau jour de votre vie.</p>
+      <div class="svc-price">
+        <span class="price-from">À partir de</span>
+        <span class="price-big">120</span>
+        <span class="price-unit">$</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================
+     ABOUT
+======================== -->
+<section id="about">
+  <div class="about-image-wrap reveal">
+    <img
+      class="about-img"
+      src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&q=80"
+      alt="Styliste au travail chez FORMA Studio"
+      loading="lazy"
+    >
+    <div class="about-frame"></div>
+    <div class="about-badge">
+      <span class="badge-num">9+</span>
+      <span class="badge-txt">Ans d'expertise</span>
+    </div>
+  </div>
+
+  <div class="about-right">
+    <p class="sec-label reveal">Notre Histoire</p>
+    <h2 class="sec-title reveal d1">CRÉER,<br>C'EST<br>NOTRE ADN</h2>
+
+    <p class="about-text reveal d2">
+      FORMA Studio est né d'une passion simple : faire de chaque coupe une œuvre d'art. Fondé en 2015 par la styliste Sofia Maret, notre salon allie techniques contemporaines et savoir-faire artisanal pour offrir une expérience unique à chaque client.
+    </p>
+    <p class="about-text reveal d2">
+      Nous croyons que la coiffure est bien plus qu'une coupe — c'est l'expression de votre personnalité. Chaque visite commence par une consultation approfondie pour créer un style qui vous ressemble vraiment.
+    </p>
+
+    <div class="about-stats reveal d3">
+      <div>
+        <div class="stat-val">9+</div>
+        <div class="stat-lbl">Années</div>
+      </div>
+      <div>
+        <div class="stat-val">2K+</div>
+        <div class="stat-lbl">Clients</div>
+      </div>
+      <div>
+        <div class="stat-val">5</div>
+        <div class="stat-lbl">Experts</div>
+      </div>
+      <div>
+        <div class="stat-val">4.9</div>
+        <div class="stat-lbl">Note Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================
+     GALLERY
+======================== -->
+<section id="gallery">
+  <div class="gallery-top reveal">
+    <div>
+      <p class="sec-label">Galerie</p>
+      <h2 class="sec-title">NOS<br>CRÉATIONS</h2>
+    </div>
+    <a href="#booking" class="btn-ghost">Réserver ma transformation <span class="arrow">→</span></a>
+  </div>
+
+  <div class="gallery-grid reveal d2">
+    <div class="gal-item">
+      <img
+        src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80"
+        alt="Coiffure tendance féminine" loading="lazy"
+      >
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item">
+      <img
+        src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=700&q=80"
+        alt="Intérieur du salon FORMA" loading="lazy"
+      >
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item">
+      <img
+        src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=700&q=80"
+        alt="Ciseaux de coiffure professionnels" loading="lazy"
+      >
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item">
+      <img
+        src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=700&q=80"
+        alt="Coloration professionnelle" loading="lazy"
+      >
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item">
+      <img
+        src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=700&q=80"
+        alt="Coupe homme moderne" loading="lazy"
+      >
+      <div class="gal-overlay"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================
+     TEAM
+======================== -->
+<section id="team">
+  <div class="team-top">
+    <div>
+      <p class="sec-label reveal">Notre Équipe</p>
+      <h2 class="sec-title reveal d1">DES MAINS<br>D'EXPERTS</h2>
+    </div>
+    <p class="services-intro reveal d2">
+      Cinq stylistes passionnés, chacun avec sa signature artistique, prêts à sublimer votre style au quotidien.
+    </p>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-img-wrap">
+        <span class="team-id">01</span>
+        <img
+          class="team-img"
+          src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80"
+          alt="Sofia Maret — Fondatrice" loading="lazy"
+        >
+      </div>
+      <div class="team-info">
+        <h3 class="team-name">Sofia Maret</h3>
+        <p class="team-role">Fondatrice · Directrice artistique</p>
+      </div>
+    </div>
+
+    <div class="team-card reveal d2">
+      <div class="team-img-wrap">
+        <span class="team-id">02</span>
+        <img
+          class="team-img"
+          src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80"
+          alt="Lucas Bernard — Coloriste" loading="lazy"
+        >
+      </div>
+      <div class="team-info">
+        <h3 class="team-name">Lucas Bernard</h3>
+        <p class="team-role">Expert Coloriste</p>
+      </div>
+    </div>
+
+    <div class="team-card reveal d4">
+      <div class="team-img-wrap">
+        <span class="team-id">03</span>
+        <img
+          class="team-img"
+          src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=600&q=80"
+          alt="Amara Diallo — Styliste cérémonie" loading="lazy"
+        >
+      </div>
+      <div class="team-info">
+        <h3 class="team-name">Amara Diallo</h3>
+        <p class="team-role">Styliste Coiffures de Cérémonie</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================
+     TESTIMONIALS
+======================== -->
+<section id="testimonials">
+  <div class="testi-header">
+    <p class="sec-label reveal">Avis Clients</p>
+    <h2 class="sec-title reveal d1">ILS NOUS<br>FONT CONFIANCE</h2>
+  </div>
+
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Sofia a complètement transformé mon style. Je venais avec une vague idée et je suis repartie avec une coupe parfaite qui me ressemble vraiment. L'équipe est aux petits soins !"</p>
+      <div class="testi-author">
+        <img
+          class="testi-avatar"
+          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+          alt="Isabelle R." loading="lazy"
+        >
+        <div>
+          <p class="author-name">Isabelle R.</p>
+          <p class="author-since">Cliente depuis 2019</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal d2">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Lucas est un génie de la coloration. Mon balayage est exactement ce que je voulais — naturel, lumineux, parfaitement fondu. Je ne vais plus nulle part ailleurs."</p>
+      <div class="testi-author">
+        <img
+          class="testi-avatar"
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+          alt="Marc T." loading="lazy"
+        >
+        <div>
+          <p class="author-name">Marc T.</p>
+          <p class="author-since">Client depuis 2021</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal d4">
+      <div class="stars">★★★★★</div>
+      <p class="testi-quote">"Amara a réalisé ma coiffure pour mon mariage. Elle a su créer exactement l'ambiance romantique et moderne que je souhaitais. Je me suis sentie magnifique toute la journée !"</p>
+      <div class="testi-author">
+        <img
+          class="testi-avatar"
+          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80"
+          alt="Céline B." loading="lazy"
+        >
+        <div>
+          <p class="author-name">Céline B.</p>
+          <p class="author-since">Cliente depuis 2022</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================
+     BOOKING
+======================== -->
+<section id="booking">
+  <div class="booking-watermark">FORMA</div>
+
+  <div class="booking-wrap">
+    <!-- Info side -->
+    <div>
+      <p class="sec-label reveal">Réservation</p>
+      <h2 class="sec-title reveal d1">PRENEZ<br>RENDEZ-<br>VOUS</h2>
+      <p class="booking-info-text reveal d2">
+        Réservez votre séance en quelques secondes. Notre équipe vous confirme le créneau par e-mail sous 24h. Aucun acompte requis.
+      </p>
+
+      <div class="booking-details reveal d3">
+        <div class="detail-row">
+          <div class="detail-icon">📍</div>
+          <div>
+            <p class="detail-label">Adresse</p>
+            <p class="detail-val">1245 Rue Crescent, Montréal, QC H3G 2B1</p>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">🕐</div>
+          <div>
+            <p class="detail-label">Horaires</p>
+            <p class="detail-val">Lun–Ven 9h–19h · Sam 9h–17h</p>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">📞</div>
+          <div>
+            <p class="detail-label">Téléphone</p>
+            <p class="detail-val">+1 (514) 889-5520</p>
+          </div>
+        </div>
+        <div class="detail-row">
+          <div class="detail-icon">✉️</div>
+          <div>
+            <p class="detail-label">E-mail</p>
+            <p class="detail-val">contact@forma-studio.ca</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form side -->
+    <div class="booking-form-box reveal d2" id="formBox">
+      <!-- FORM -->
+      <form id="rdvForm">
+        <h3 class="form-heading">VOTRE DEMANDE</h3>
+
+        <div class="form-row-2">
+          <div class="form-grp">
+            <label class="form-lbl">Prénom *</label>
+            <input type="text" class="form-ctrl" placeholder="Sophie" required>
+          </div>
+          <div class="form-grp">
+            <label class="form-lbl">Nom *</label>
+            <input type="text" class="form-ctrl" placeholder="Martin" required>
+          </div>
+        </div>
+
+        <div class="form-grp">
+          <label class="form-lbl">E-mail *</label>
+          <input type="email" class="form-ctrl" placeholder="sophie.martin@email.com" required>
+        </div>
+
+        <div class="form-grp">
+          <label class="form-lbl">Téléphone</label>
+          <input type="tel" class="form-ctrl" placeholder="+33 6 00 00 00 00">
+        </div>
+
+        <div class="form-grp">
+          <label class="form-lbl">Service souhaité *</label>
+          <select class="form-ctrl" required>
+            <option value="" disabled selected>Choisir un service…</option>
+            <option>Coupe Femme (à partir de 45$)</option>
+            <option>Coupe Homme (à partir de 30$)</option>
+            <option>Coloration (à partir de 65$)</option>
+            <option>Balayage (à partir de 90$)</option>
+            <option>Soin Capillaire (à partir de 35$)</option>
+            <option>Coiffure Mariée (à partir de 120$)</option>
+          </select>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-grp">
+            <label class="form-lbl">Date souhaitée *</label>
+            <input type="date" class="form-ctrl" id="dateInput" required>
+          </div>
+          <div class="form-grp">
+            <label class="form-lbl">Heure préférée</label>
+            <select class="form-ctrl">
+              <option>9h00</option>
+              <option>10h00</option>
+              <option>11h00</option>
+              <option>13h00</option>
+              <option>14h00</option>
+              <option>15h00</option>
+              <option>16h00</option>
+              <option>17h00</option>
+              <option>18h00</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="form-submit">Confirmer ma demande →</button>
+      </form>
+
+      <!-- SUCCESS STATE -->
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">✅</div>
+        <p class="success-title">MERCI !</p>
+        <p class="success-msg">
+          Votre demande de rendez-vous a bien été reçue.<br>
+          Notre équipe vous contactera sous <strong>24h</strong> pour confirmer votre créneau.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================
+     FOOTER
+======================== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">FORMA</div>
+      <p>Studio de coiffure d'exception à Montréal. Art, style et savoir-faire au service de votre image depuis 2015.</p>
+    </div>
+
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Coupe Femme</a></li>
+        <li><a href="#services">Coupe Homme</a></li>
+        <li><a href="#services">Coloration</a></li>
+        <li><a href="#services">Balayage</a></li>
+        <li><a href="#services">Coiffure Mariée</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#about">Notre Histoire</a></li>
+        <li><a href="#gallery">Galerie</a></li>
+        <li><a href="#team">Équipe</a></li>
+        <li><a href="#testimonials">Avis Clients</a></li>
+        <li><a href="#booking">Rendez-vous</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">1245 Rue Crescent, Montréal QC</a></li>
+        <li><a href="tel:+15148895520">+1 (514) 889-5520</a></li>
+        <li><a href="mailto:contact@forma-studio.ca">contact@forma-studio.ca</a></li>
+        <li><a href="#">Lun–Ven 9h–19h</a></li>
+        <li><a href="#">Sam 9h–17h · Dim Fermé</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 FORMA Studio · Tous droits réservés · Site vitrine réalisé avec ❤️</p>
+    <div class="footer-socials">
+      <a href="#" class="soc-link">Instagram</a>
+      <a href="#" class="soc-link">Facebook</a>
+      <a href="#" class="soc-link">TikTok</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ========================
+     JAVASCRIPT
+======================== -->
+<script>
+  // ---------- NAV SCROLL ----------
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ---------- HAMBURGER ----------
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  mobileClose.addEventListener('click', closeMobileMenu);
+
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // ---------- SCROLL REVEAL ----------
+  const revealEls = document.querySelectorAll('.reveal');
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ---------- ACTIVE NAV HIGHLIGHT ----------
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const activeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          const isActive = link.getAttribute('href') === '#' + entry.target.id;
+          if (!link.classList.contains('nav-cta')) {
+            link.style.color = isActive ? 'var(--gold)' : '';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => activeObserver.observe(s));
+
+  // ---------- DATE MIN ----------
+  const dateInput = document.getElementById('dateInput');
+  if (dateInput) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.min = tomorrow.toISOString().split('T')[0];
+  }
+
+  // ---------- FORM SUBMIT ----------
+  const rdvForm    = document.getElementById('rdvForm');
+  const formSuccess = document.getElementById('formSuccess');
+
+  rdvForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    rdvForm.style.transition = 'opacity 0.3s, transform 0.3s';
+    rdvForm.style.opacity = '0';
+    rdvForm.style.transform = 'translateY(10px)';
+
+    setTimeout(() => {
+      rdvForm.style.display = 'none';
+      formSuccess.classList.add('show');
+
+      formSuccess.style.opacity = '0';
+      formSuccess.style.transform = 'translateY(10px)';
+      formSuccess.style.transition = 'opacity 0.5s, transform 0.5s';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          formSuccess.style.opacity = '1';
+          formSuccess.style.transform = 'translateY(0)';
+        });
+      });
+    }, 320);
+  });
+</script>
+
+</body>
+</html>
